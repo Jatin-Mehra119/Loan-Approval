@@ -1,0 +1,5 @@
+data/cleaned/train.csv
+data/raw/train.csv
+data/raw/test.csv
+src/__pycache__
+*.pkl
