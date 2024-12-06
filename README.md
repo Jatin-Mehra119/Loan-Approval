@@ -26,6 +26,7 @@ Loan-Approval/
 ├── XGB.ipynb
 ├── bagging_clf.ipynb
 ├── catboost.ipynb
+├── lightgb.ipynb
 ├── requirements.txt
 └── README.md
 
