@@ -1,4 +1,5 @@
 data/cleaned/train.csv
+data/cleaned/test.csv
 data/raw/train.csv
 data/raw/test.csv
 src/__pycache__

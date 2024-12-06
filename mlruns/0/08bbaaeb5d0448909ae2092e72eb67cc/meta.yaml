@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/08bbaaeb5d0448909ae2092e72eb67cc/artifacts
+end_time: 1733504151248
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 08bbaaeb5d0448909ae2092e72eb67cc
+run_name: xgboost
+run_uuid: 08bbaaeb5d0448909ae2092e72eb67cc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1733504139352
+status: 3
+tags: []
+user_id: jatin

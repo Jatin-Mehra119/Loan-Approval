@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/2e41389e38044819bc1d8168d0b1d614/artifacts
+deleted_time: 1733505930424
+end_time: 1733505831678
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 2e41389e38044819bc1d8168d0b1d614
+run_name: catboost_tuning
+run_uuid: 2e41389e38044819bc1d8168d0b1d614
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1733505831606
+status: 4
+tags: []
+user_id: jatin

@@ -1,0 +1,2 @@
+LGBMClassifier(eval_metric='logloss', learning_rate=0.05, n_estimators=1000,
+               verbose=100)
