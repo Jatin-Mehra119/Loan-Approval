@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/1b89c2bee7d5453e925ed8c71f557cae/artifacts
+deleted_time: 1733502944050
+end_time: 1733502550432
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 1b89c2bee7d5453e925ed8c71f557cae
+run_name: LIGHTGBM
+run_uuid: 1b89c2bee7d5453e925ed8c71f557cae
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1733502548073
+status: 4
+tags: []
+user_id: jatin

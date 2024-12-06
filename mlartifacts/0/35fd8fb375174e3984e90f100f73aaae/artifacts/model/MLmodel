@@ -1,0 +1,85 @@
+artifact_path: model
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.3
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.5.1
+mlflow_version: 2.18.0
+model_size_bytes: 3475877
+model_uuid: 190b9b195693465c8875e26b7997fa37
+run_id: 35fd8fb375174e3984e90f100f73aaae
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "num__person_age", "required": true}, {"type":
+    "double", "name": "num__person_emp_length", "required": true}, {"type": "double",
+    "name": "num__loan_int_rate", "required": true}, {"type": "double", "name": "num__cb_person_cred_hist_length",
+    "required": true}, {"type": "double", "name": "label__person_home_ownership_MORTGAGE",
+    "required": true}, {"type": "double", "name": "label__person_home_ownership_OTHER",
+    "required": true}, {"type": "double", "name": "label__person_home_ownership_OWN",
+    "required": true}, {"type": "double", "name": "label__person_home_ownership_RENT",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_0.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_1.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_2.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_3.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_4.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_5.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_6.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_7.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_8.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_9.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_10.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_11.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_12.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_13.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_14.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_15.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_16.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_17.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_18.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_19.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_20.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_21.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_22.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_23.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_24.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_25.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_26.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_27.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_28.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_29.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_30.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_31.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_35.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_39.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_41.0",
+    "required": true}, {"type": "double", "name": "label__person_emp_length_123.0",
+    "required": true}, {"type": "double", "name": "label__loan_intent_DEBTCONSOLIDATION",
+    "required": true}, {"type": "double", "name": "label__loan_intent_EDUCATION",
+    "required": true}, {"type": "double", "name": "label__loan_intent_HOMEIMPROVEMENT",
+    "required": true}, {"type": "double", "name": "label__loan_intent_MEDICAL", "required":
+    true}, {"type": "double", "name": "label__loan_intent_PERSONAL", "required": true},
+    {"type": "double", "name": "label__loan_intent_VENTURE", "required": true}, {"type":
+    "double", "name": "label__loan_grade_A", "required": true}, {"type": "double",
+    "name": "label__loan_grade_B", "required": true}, {"type": "double", "name": "label__loan_grade_C",
+    "required": true}, {"type": "double", "name": "label__loan_grade_D", "required":
+    true}, {"type": "double", "name": "label__loan_grade_E", "required": true}, {"type":
+    "double", "name": "label__loan_grade_F", "required": true}, {"type": "double",
+    "name": "label__loan_grade_G", "required": true}, {"type": "double", "name": "log__person_income",
+    "required": true}, {"type": "double", "name": "log__loan_amnt", "required": true},
+    {"type": "double", "name": "log__loan_percent_income", "required": true}]'
+  outputs: '[{"type": "long", "required": true}]'
+  params: null
+utc_time_created: '2024-12-06 16:36:48.676416'
