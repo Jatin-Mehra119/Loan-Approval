@@ -6,3 +6,5 @@
 2024-12-07 16:46:50,456 - app - INFO - Prediction result: 0
 2024-12-07 16:46:52,230 - app - INFO - Received prediction request: {'id': 58653, 'person_age': 32, 'person_income': 29124.0, 'person_home_ownership': 'RENT', 'person_emp_length': 0.0, 'loan_intent': 'PERSONAL', 'loan_grade': 'C', 'loan_amnt': 7200.0, 'loan_int_rate': 13.11, 'loan_percent_income': 0.26, 'cb_person_default_on_file': 'Y', 'cb_person_cred_hist_length': 6}
 2024-12-07 16:46:52,274 - app - INFO - Prediction result: 0
+2024-12-07 18:34:37,923 - app - INFO - Received prediction request: {'id': 58652, 'person_age': 23, 'person_income': 55000.0, 'person_home_ownership': 'MORTGAGE', 'person_emp_length': 6.0, 'loan_intent': 'PERSONAL', 'loan_grade': 'A', 'loan_amnt': 6250.0, 'loan_int_rate': 6.76, 'loan_percent_income': 0.12, 'cb_person_default_on_file': 'N', 'cb_person_cred_hist_length': 2}
+2024-12-07 18:34:38,081 - app - INFO - Prediction result: 0

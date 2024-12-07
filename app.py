@@ -18,8 +18,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Load the model and preprocessing pipeline
-Preprocessing = joblib.load(r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\models\preprocessor_model\preprocessing.pkl')
-model = joblib.load(r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\models\bagging_clfs\model.pkl')
+Preprocessing = joblib.load(r'models\preprocessor_model\preprocessing.pkl')
+model = joblib.load(r'models\bagging_clfs\model.pkl')
 
 # Define the request body model
 class Loan(BaseModel):
