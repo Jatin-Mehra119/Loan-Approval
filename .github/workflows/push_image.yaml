@@ -16,5 +16,5 @@ jobs:
       - name: Build and push the Docker image
         run: |
           docker login --username Jatin-Mehra119 --password ${{ secrets.GH_PAT }} ghcr.io
-          docker build . --tag ghcr.io/Jatin-Mehra119/loan-approval-api:latest
-          docker push ghcr.io/Jatin-Mehra119/loan-approval-api:latest
+          docker build . --tag ghcr.io/jatin-mehra119/loan-approval-api:latest
+          docker push ghcr.io/jatin-mehra119/loan-approval-api:latest
