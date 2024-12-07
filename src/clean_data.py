@@ -2,6 +2,13 @@ import pandas as pd
 from preprocessing import preprocessing
 import os
 
+
+###---------------------------------------------------------------------###
+"""
+This script loads the raw data, cleans it, and saves the cleaned data.
+"""
+###---------------------------------------------------------------------###
+
 # Load the raw data
 df = pd.read_csv(r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\data\raw\train.csv')
 

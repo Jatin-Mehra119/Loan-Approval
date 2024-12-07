@@ -15,6 +15,10 @@ class Evaluator:
         self.run_name = run_name
 
     def evaluate(self):
+        """
+        Evaluate the model with the provided data and log the evaluation process with MLflow.
+        :return: Tuple of score, classification report, and ROC AUC
+        """
         try:
             with mlflow.start_run(run_name=self.run_name) as run:
                 # Score

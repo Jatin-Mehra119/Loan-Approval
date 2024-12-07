@@ -1,44 +1,63 @@
 import os
 import warnings
 import pandas as pd
-from src.preprocessing import preprocessing
+from src.preprocessing import preprocessing, safe_log_transform
 import joblib
 warnings.filterwarnings("ignore")
+import numpy as np
 
-preprocessing = preprocessing() # Create an instance of the preprocessing class
+###---------------------------------------------------------------------###
+"""
+This script is used to make predictions on the test data and save them in the data/predictions directory.
+"""
+###---------------------------------------------------------------------###
 
-# Load the raw data
-raw = pd.read_csv(r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\data\raw\test.csv')
+# Function to make predictions and save them
+def sumbmition(prediction_name, model_path):
 
-# Clean the data
-cleaned = preprocessing.fit_transform(raw)
+    preprocessing = joblib.load(r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\models\preprocessor_model\preprocessing.pkl')
 
-# Create the directory for cleaned data
-os.makedirs(r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\data\cleaned', exist_ok=True)
+    # Load the raw data
+    raw = pd.read_csv(r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\data\raw\test.csv')
 
-# Save the cleaned data
-cleaned.to_csv(r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\data\cleaned\test.csv', index=False)
+    # Clean the data
+    cleaned = preprocessing.transform(raw)
 
-# clear the memory
-del raw, cleaned
+    # Create the directory for cleaned data
+    os.makedirs(r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\data\cleaned', exist_ok=True)
 
-# Load the cleaned data
+    # Save the cleaned data
+    cleaned.to_csv(r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\data\cleaned\test.csv', index=False)
 
-cleaned = pd.read_csv(r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\data\cleaned\test.csv')
+    # clear the memory
+    del raw
 
-# Load the model
+    # Load the model
 
-model = joblib.load(r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\models\bagging_clfs\model.pkl')
+    model = joblib.load(model_path)
 
-# Make predictions
+    # Make predictions
 
-predictions = model.predict(cleaned)
-cleaned['loan_status'] = predictions
-# Create the directory for predictions
+    predictions = model.predict(cleaned)
 
-os.makedirs(r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\data\predictions', exist_ok=True)
+    del cleaned
 
-submit = cleaned[['id', 'loan_status']]
-# Save the predictions
+    sub = pd.read_csv(r"C:\Users\jatin\OneDrive\Desktop\Loan-Approval\data\sample_submission.csv")
 
-pd.DataFrame(submit).to_csv(r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\data\predictions\predictions.csv', index='id')
+    sub['loan_status'] = predictions
+
+    # Create the directory for predictions
+
+    os.makedirs(r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\data\predictions', exist_ok=True)
+
+    # Save the predictions
+
+    pd.DataFrame(sub).to_csv(rf'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\data\predictions\{prediction_name}', index=False)
+    print("Predictions saved successfully!")
+
+if __name__ == '__main__':
+    sumbmition('submission_baggingclf.csv', r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\models\bagging_clfs\model.pkl')
+    sumbmition('submission_catBoost.csv', r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\models\Fine_Tuned_model[CatBoost]\model.pkl')
+    sumbmition('submission_lightgmb.csv', r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\models\Fine_Tuned_model[LightGBM]\model.pkl')
+    sumbmition('submission_XGB.csv', r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\models\Fine_Tuned_model[XGB]\model.pkl')
+    sumbmition('submission_rf.csv', r'C:\Users\jatin\OneDrive\Desktop\Loan-Approval\models\Fine_Tuned_model\model.pkl')

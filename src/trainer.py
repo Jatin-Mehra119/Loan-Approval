@@ -10,10 +10,28 @@ mlflow.set_tracking_uri("http://localhost:5000")
 
 class Trainer:
     def __init__(self, model: BaseEstimator, run_name=None):
+        """
+        Initialize the Trainer with a model and an optional run name.
+        
+        Parameters:
+        model (BaseEstimator): The machine learning model to be trained.
+        run_name (str): Optional name for the MLflow run.
+        """
         self.model = model
         self.run_name = run_name
 
     def fit(self, X, y, parms=None):
+        """
+        Train the model with the provided data and parameters, and log the training process with MLflow.
+        
+        Parameters:
+        X (array-like): Training data.
+        y (array-like): Target values.
+        parms (dict): Optional parameters to set on the model before training.
+        
+        Returns:
+        model: The trained model.
+        """
         run_name = self.run_name or type(self.model).__name__
         with mlflow.start_run(run_name=run_name) as run:
             try:
@@ -62,6 +80,17 @@ class Trainer:
 
 
     def evaluate(self, X, y, threshold=0.5):
+        """
+        Evaluate the model with the provided data and log the evaluation process with MLflow.
+        
+        Parameters:
+        X (array-like): Evaluation data.
+        y (array-like): Target values.
+        threshold (float): Threshold for classification.
+        
+        Returns:
+        tuple: Classification report and ROC AUC score.
+        """
         with mlflow.start_run(run_name=f"{self.run_name}_evaluation") as run:
             try:
                 predictions = self.model.predict(X)
@@ -93,6 +122,17 @@ class Trainer:
                 raise
 
     def hyperparameter_tuning(self, X, y, param_grid):
+        """
+        Perform hyperparameter tuning using GridSearchCV and log the tuning process with MLflow.
+        
+        Parameters:
+        X (array-like): Training data.
+        y (array-like): Target values.
+        param_grid (dict): Dictionary with parameters names as keys and lists of parameter settings to try as values.
+        
+        Returns:
+        model: The best model found by GridSearchCV.
+        """
         print(f"Starting hyperparameter tuning for {self.run_name}...")
         with mlflow.start_run(run_name=f"{self.run_name}_tuning") as run:
             try:
@@ -116,6 +156,16 @@ class Trainer:
                 raise
             
     def save_model(self, path, model_name=None):
+        """
+        Save the trained model to the specified path.
+        
+        Parameters:
+        path (str): The directory path where the model should be saved.
+        model_name (str): Optional name for the saved model file.
+        
+        Returns:
+        int: 0 if the model is saved successfully.
+        """
         # Check if the directory exists, if not, create it
         if not os.path.exists(path):
             os.makedirs(path)
@@ -132,6 +182,15 @@ class Trainer:
 
     @staticmethod
     def _flatten_params(params):
+        """
+        Flatten a dictionary of parameters.
+        
+        Parameters:
+        params (dict): Dictionary of parameters.
+        
+        Returns:
+        dict: Flattened dictionary of parameters.
+        """
         flattened = {}
         for key, value in params.items():
             if isinstance(value, dict):
