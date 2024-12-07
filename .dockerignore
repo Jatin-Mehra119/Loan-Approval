@@ -1,0 +1,12 @@
+venv/
+*.pyc
+*.pyo
+__pycache__/
+data/
+notebooks/
+*.ipynb
+*.log
+*.csv
+catboost_info/
+mlruns/
+mfartifacts/
