@@ -6,3 +6,5 @@ src/__pycache__
 *.pkl
 data/sample_submission.csv
 data/predictions/*
+__pycache__/
+venv/
