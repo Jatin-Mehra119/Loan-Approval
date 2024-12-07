@@ -2,24 +2,34 @@ import joblib
 import pandas as pd
 from fastapi import FastAPI
 from pydantic import BaseModel
+from fastapi.responses import JSONResponse
 import logging
+import os
+from logging.handlers import RotatingFileHandler
 
-# Set up logging configuration
+# Set up logging configuration with rotation
+rotating_handler = RotatingFileHandler("app.log", maxBytes=5 * 1024 * 1024, backupCount=3)
 logging.basicConfig(
-    level=logging.INFO,  # You can adjust this level (DEBUG, ERROR, etc.)
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[
-        logging.StreamHandler(),  # Logs to the console
-        logging.FileHandler('app.log')  # Logs to a file named 'app.log'
-    ]
+        logging.StreamHandler(),  # Logs to console
+        rotating_handler          # Rotating logs to 'app.log'
+    ],
 )
-
-# Get a logger instance
 logger = logging.getLogger(__name__)
 
-# Load the model and preprocessing pipeline
-Preprocessing = joblib.load(r'models\preprocessor_model\preprocessing.pkl')
-model = joblib.load(r'models\bagging_clfs\model.pkl')
+# Load model and preprocessing pipeline
+preprocessing_path = os.getenv("PREPROCESSING_PATH", os.path.join("models", "preprocessor_model", "preprocessing.pkl"))
+model_path = os.getenv("MODEL_PATH", os.path.join("models", "bagging_clfs", "model.pkl"))
+
+try:
+    Preprocessing = joblib.load(preprocessing_path)
+    model = joblib.load(model_path)
+    logger.info("Model and preprocessing pipeline loaded successfully.")
+except Exception as e:
+    logger.error(f"Failed to load models: {e}")
+    raise
 
 # Define the request body model
 class Loan(BaseModel):
@@ -39,8 +49,18 @@ class Loan(BaseModel):
 # FastAPI app
 app = FastAPI()
 
+@app.get("/health")
+def health_check():
+    """
+    Health check endpoint to verify the service is running.
+    """
+    return {"status": "ok"}
+
 @app.post("/predict")
 def predict(loan_data: Loan):
+    """
+    Endpoint to predict loan approval status.
+    """
     try:
         # Log the incoming request
         logger.info(f"Received prediction request: {loan_data.dict()}")
@@ -59,9 +79,9 @@ def predict(loan_data: Loan):
         logger.info(f"Prediction result: {prediction[0]}")
 
         # Return the prediction result
-        return {"prediction": int(prediction[0])}
+        return JSONResponse(content={"prediction": int(prediction[0])}, status_code=200)
     
     except Exception as e:
         # Log the error if something goes wrong
         logger.error(f"Error occurred during prediction: {str(e)}")
-        return {"error": str(e)}
+        return JSONResponse(content={"error": str(e)}, status_code=500)
