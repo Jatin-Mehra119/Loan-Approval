@@ -1,0 +1,20 @@
+name: Docker Image Loan-approval-API
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the code
+      - uses: actions/checkout@v4
+
+      # Build and push the Docker image
+      - name: Build and push the Docker image
+        run: |
+          docker login --username Jatin-Mehra119 --password ${{ secrets.GH_PAT }} ghcr.io
+          docker build . --tag ghcr.io/Jatin-Mehra119/loan-approval-api:latest
+          docker push ghcr.io/Jatin-Mehra119/loan-approval-api:latest
