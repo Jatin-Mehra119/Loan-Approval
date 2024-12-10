@@ -24,7 +24,7 @@ Loan-Approval/
 ├── notebook/
 │   └── notebook.ipynb # EDA & DATA visualizations
 ├── XGB.ipynb
-├── bagging_clf.ipynb
+├── Stacking_clf.ipynb
 ├── catboost.ipynb
 ├── lightgb.ipynb
 ├── requirements.txt
@@ -73,7 +73,7 @@ Loan-Approval/
 
 - **RandomF.ipynb**: Train and tune the hyperparameters, evaluate a Random Forest classifier.
 - **XGB.ipynb**: Train and tune the hyperparameters, evaluate an XGBoost classifier.
-- **bagging_clf.ipynb**: Train and tune the hyperparameters, evaluate and tune the hyperparameters, a Bagging classifier.
+- **Stacking_clf.ipynb**: Train and tune the hyperparameters, evaluate and tune the hyperparameters, a Bagging classifier.
 - **catboost.ipynb**: Train and tune the hyperparameters, evaluate a CatBoost classifier.
 
 ## Source Code
@@ -161,7 +161,7 @@ The FastAPI application also handles errors gracefully, returning a message desc
 
 ## Final Model Submission
 
-For the final submission, the **Bagging Classifier** was selected and used to generate the predictions. This model achieved the highest performance and was used for the final `submission.csv`.
+For the final submission, the **Stacking Classifier** was selected and used to generate the predictions. This model achieved the highest performance and was used for the final `submission.csv`.
 
 ## Performance Metrics
 
@@ -171,7 +171,7 @@ Here are the ROC_AUC scores (Cross-validation scores) for each model:
 -   **CatBoost**: ~95
 -   **LightGBM**: ~95
 -   **Random Forest**: ~93
--   **Bagging Classifier**: **96** (Best performing model for final submission)
+-   **Stacking Classifier**: **96** (Best performing model for final submission)
 
 ## Contributions
 
